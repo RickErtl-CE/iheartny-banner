@@ -158,9 +158,10 @@ html, body {
 
 .subhead-v1 {
   font-family: var(--font-ui);
-  font-size: 11px;
+  font-size: 12px;
+  font-weight: 600;
   line-height: 1.35;
-  color: rgba(255, 255, 255, 0.88);
+  color: var(--white);
   max-width: 190px;
 }
 
