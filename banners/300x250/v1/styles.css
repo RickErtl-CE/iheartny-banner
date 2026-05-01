@@ -181,22 +181,38 @@ html, body {
 }
 
 .cta-domain-v1 {
-  text-decoration: underline;
-  text-decoration-color: rgba(11, 30, 48, 0.35);
-  text-underline-offset: 2px;
+  /* reserved */
 }
 
-/* --- Logo: top-right, below hook --- */
+/* --- Logo cluster: top-right, below hook --- */
 .logo-v1 {
   position: absolute;
   z-index: 4;
   top: 30px;
   right: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 6px;
+  padding: 4px 6px 5px;
+}
+
+.logo-img-v1 {
   width: 54px;
   height: auto;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 4px;
-  padding: 3px 4px;
+}
+
+.logo-url-v1 {
+  display: block;
+  margin-top: 3px;
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  color: rgba(11, 30, 48, 0.55);
+  text-align: center;
 }
 
 /* --- Arrow nav: left/right edges in photo zone --- */
