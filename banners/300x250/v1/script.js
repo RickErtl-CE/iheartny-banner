@@ -81,11 +81,33 @@
     window.open(adLink.getAttribute("href") || DEFAULT_URL, "_blank", "noopener,noreferrer");
   });
 
+  var userInteracted = false;
+  var autoTimer = null;
+  var autoAdvances = 0;
+  var FIRST_DELAY = 6500;
+  var SLIDE_DELAY = 5000;
+
+  function stopAuto() {
+    userInteracted = true;
+    if (autoTimer) { clearTimeout(autoTimer); autoTimer = null; }
+  }
+
+  function scheduleNext() {
+    if (userInteracted || autoAdvances >= 2) return;
+    var delay = autoAdvances === 0 ? FIRST_DELAY : SLIDE_DELAY;
+    autoTimer = setTimeout(function () {
+      advance(1);
+      autoAdvances++;
+      scheduleNext();
+    }, delay);
+  }
+
   // Arrow navigation
   if (prevBtn) {
     prevBtn.addEventListener("click", function (e) {
       e.preventDefault();
       e.stopPropagation();
+      stopAuto();
       advance(-1);
     });
   }
@@ -94,13 +116,17 @@
     nextBtn.addEventListener("click", function (e) {
       e.preventDefault();
       e.stopPropagation();
+      stopAuto();
       advance(1);
     });
   }
 
   // Keyboard nav
   document.addEventListener("keydown", function (e) {
-    if (e.key === "ArrowLeft") advance(-1);
-    if (e.key === "ArrowRight") advance(1);
+    if (e.key === "ArrowLeft") { stopAuto(); advance(-1); }
+    if (e.key === "ArrowRight") { stopAuto(); advance(1); }
   });
+
+  // Start auto-advance
+  scheduleNext();
 })();
