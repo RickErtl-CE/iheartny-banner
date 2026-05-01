@@ -1,0 +1,143 @@
+Specifications for HTML5 creatives
+HTML5 creatives are a type of display creative with their own specific recommendations, sourced
+from the IAB Display Advertising Guidelines. HTML5 creatives are displayed as a full HTML page in
+an iFrame.
+
+Tip
+Want a PDF version of the creative specifications? Download it from our
+website.
+Here's what you need to know about HTML5 creatives:
+You may not use dynamic or expandable creatives as HTML5 creatives.
+Different browsers have different subsets of HTML5 features enabled. Your creative might
+fail on a browser if it attempts to use a feature that is not enabled in the browser. It is your
+responsibility to ensure that your creative “gracefully degrades" in case the browser it is
+viewed on doesn’t support the features it uses.
+The IAB recommends adding the dimensions of your creative to your primary HTML
+document in a meta tag inside of the <head> section of your document. Here's an
+example, in which you'd replace the width and height values with the actual
+dimensions of your creative:
+<meta name="ad.size" content="width=300,height=250"/> 
+If an ad.size meta tag is not provided in the primary HTML document, you are prompted
+to enter dimensions when you submit the creative.
+The Trade Desk Hosted HTML5 system requires that you upload a static backup image. This
+image is used to display the ad if a user has JavaScript disabled.
+Commonly used JavaScript and CSS libraries (such as jQuery) do not need to be included
+with the creative.
+Including image sprites instead of multiple images decreases the number of file requests
+made by your creative and increases its performance.
+https://desk.thetradedesk.com/knowledge-portal/en/creatives-specs-html5.html 1/5
+4/30/26, 8:56 AM Specifications for HTML5 creatives
+Avoid the use of video tags in HTML5.
+Audio tags should play only if a user intentionally starts the audio.
+For details on this creative type, see HTML5 For Digital Advertising: Guidance for Ad Designers
+and Creative Technologists.
+File sizes
+The following table lists the supported file sizes for HTML5 creatives. For additional requirements,
+see File packaging.
+Requirement Maximum specification
+Initial load 300 KB (200 KB recommended)
+Subload 600 KB
+Initial file load count 10 files
+Subload file count 100 files
+File size 5 MB
+User-initiated load 2.2 MB (recommended)
+File packaging
+You can use one of the following packaging options:
+A single HTML file.
+All information for serving the creative (with the exception of commonly used JavaScript
+and CSS libraries) should be included in the HTML file. The maximum HTML file size is 200
+KB.
+A single root/main HTML file with supporting images.
+A single root/main HTML file with supporting images and additional supporting JS and CSS
+files.
+Here's what you need to know about using compressed (ZIP) files:
+All files for displaying the creative (with the exception of commonly used JavaScript and
+CSS libraries) should be included in the ZIP file.
+The primary HTML file should be located in the root of the ZIP file.
+https://desk.thetradedesk.com/knowledge-portal/en/creatives-specs-html5.html 2/5
+4/30/26, 8:56 AM Specifications for HTML5 creatives
+ZIP files must contain no more than 100 files, including at least one HTML file for use as the
+initiating file for display. Keep the file count low to minimize browser performance impact.
+You can include only HTML, JS, CSS, MP4, JPG, JPEG, GIF, PNG, and SVG files in a ZIP file.
+When packaging HTML5 creatives, include the asset files, not the folder containing them, in
+the ZIP file:
+The following table lists the maximum file size requirements for compressed files. See also File
+sizes.
+Requirement Maximum size
+Automatically-started video Less than 1.1 MB
+Any individual file 2.2 MB
+Primary HTML file 100 KB
+ZIP file compressed Less than 10 MB
+ZIP file uncompressed Less than 12 MB
+Click tag parameters
+A click tag is a parameter used in HTML5 banner ads. The parameter is a variable that defines the
+destination URL and is provided in the primary HTML file as a URL parameter.
+Here's what you need to know about click tag parameters:
+You can customize the name of the URL parameter when uploading or editing the creative.
+https://desk.thetradedesk.com/knowledge-portal/en/creatives-specs-html5.html 3/5
+4/30/26, 8:56 AM Specifications for HTML5 creatives
+Click tag names are case-sensitive. Be sure to use uniform capitalization throughout the
+creative and any supporting files. For example, clickTag and clickTAG are not
+interchangeable. The Trade Desk Platform defaults to clickTAG.
+When the user clicks the ad, the creative must direct the user to the correct click tag page in
+a new window.
+If you want to also use that clickthrough URL in your HTML5 creative, you can configure the
+creative to use the backup clickthrough URL as the default clickthrough URL.
+To call the clickthrough page through the backup ad image correctly, you must supply a
+clickthrough parameter.
+You can use multiple click-through URLs and define different landing pages for different
+actions.
+If you append a URL-escaped landing page to the click tag URL, the platform tracks the click
+and redirects the request to the given landing page.
+var clickTAG = getParameterByName("clickTAG") +
+encodeURIComponent("http://www.thetradedesk.com");
+
+
+Tip
+Use JavaScript to read the parameter from the document location URL and
+use it to set up the landing page for your clicks. You can use either all single
+quotes (') or all double quotes (") in your code, but you cannot mix them.
+Example 1. A click tag parameter example
+The following code block shows one way to retrieve and implement a creative with a
+clickthrough URL that has been specified in The Trade Desk platform. In this example, a single
+image is wrapped with an anchor tag, which, when clicked, opens a new window with the
+address stored in the clickTAG URL parameter of the creative.
+https://desk.thetradedesk.com/knowledge-portal/en/creatives-specs-html5.html 4/5
+4/30/26, 8:56 AM Specifications for HTML5 creatives
+
+<html>
+<head>
+<script type="text/javascript" charset="utf-8">
+function getParameterByName(name) {
+ 1
+// Returns the value of URL parameter "name"
+name = name.replace(/[\[]/,
+"\\[").replace(/[\]]/,
+var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+results = regex.exec(location.search);
+return results === null
+? ""
+"\\]");
+: decodeURIComponent(results[1].replace(/\+/g,
+" "));
+var clickTAG = getParameterByName("clickTAG");
+}
+ 2
+</script>
+</head>
+<body>
+<a href="javascript:window.open(window.clickTAG);void(0);">
+<img src="clickme.jpg"/>
+</a>
+</body>
+</html>
+ 1
+This function retrieves the clickTAG parameter.
+ 2
+The location where the value for the clickthrough URL should be stored in the
+window.clickTAG variable.
+© 2026 The Trade Desk. All rights reserved.
+All rights reserved. No part of this document covered by copyright may be reproduced in any form or by any
+means-graphic, electronic, or mechanical, including photocopying, recording, taping, or storage in an electronic
+retrieval system without prior written permission of The Trade Desk, Inc.
+Last modified: September 26, 2025 English

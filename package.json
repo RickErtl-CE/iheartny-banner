@@ -1,0 +1,28 @@
+{
+  "name": "new-banner",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "protect": "./scripts/protect-repo.sh",
+    "protect:repo": "./scripts/protect-repo.sh",
+    "protect:v1": "./scripts/protect-v1.sh",
+    "clean:protected": "rm -rf protected"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RickErtl-CE/iheartny-banner.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/RickErtl-CE/iheartny-banner/issues"
+  },
+  "homepage": "https://github.com/RickErtl-CE/iheartny-banner#readme",
+  "devDependencies": {
+    "staticrypt": "^3.5.4"
+  }
+}

@@ -1,0 +1,133 @@
+:root {
+  --bg-1: #061a2b;
+  --bg-2: #0b4f7a;
+  --bg-3: #e8590c;
+  --text: #f8fbff;
+  --muted: #cfe5f7;
+  --cta-bg: #ffffff;
+  --cta-text: #0a2a44;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  width: 300px;
+  height: 250px;
+  overflow: hidden;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+}
+
+.ad-root {
+  display: block;
+  width: 300px;
+  height: 250px;
+  text-decoration: none;
+}
+
+.ad-canvas {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #1f3d57;
+  background: radial-gradient(circle at 15% 20%, #1a5f8f 0%, #061a2b 65%);
+  color: var(--text);
+  overflow: hidden;
+}
+
+.slides {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  padding: 16px 14px;
+  opacity: 0;
+  transform: translateX(12px);
+  transition: opacity 360ms ease, transform 360ms ease;
+  display: grid;
+  align-content: start;
+  gap: 8px;
+}
+
+.slide:nth-child(2) {
+  background: linear-gradient(145deg, rgba(11, 79, 122, 0.95), rgba(6, 26, 43, 0.95));
+}
+
+.slide:nth-child(3) {
+  background: linear-gradient(145deg, rgba(232, 89, 12, 0.92), rgba(10, 42, 68, 0.95));
+}
+
+.slide.is-active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.kicker {
+  margin: 0;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.headline {
+  margin: 0;
+  font-size: 26px;
+  line-height: 0.98;
+  max-width: 260px;
+}
+
+.subhead {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.3;
+  max-width: 248px;
+}
+
+.cta {
+  margin-top: 8px;
+  width: fit-content;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: var(--cta-bg);
+  color: var(--cta-text);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.dots {
+  position: absolute;
+  left: 14px;
+  bottom: 12px;
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.dot.is-active {
+  background: #ffffff;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
